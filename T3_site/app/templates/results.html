@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+	<head>
+		<title>Bookshelf</title>
+		
+		<link rel="stylesheet" href="{% static 'style.css' %}">
+	</head>
+	<body>
+		<div class="container">
+			<div class="banner">
+				<h1>Search results: "{{ query }}"</h1>
+			</div>
+			
+			{% if results %}
+				<ul>
+					{% for item in results %}
+						<li>{{ item.title }} by {{ item.author }}, first published in {{ item.year }}.</li>
+					{% endfor %}
+				</ul>
+			
+			{% else %}
+				<p>No results matching "{{ query }}".</p>
+			{% endif %}
+			
+			<a href="{% url 'index' %}">Back to home page</a>
+		</div>
+		
+	
+		<div class="footer">
+			<p>Audra Krebs' tech exercise submission</p>
+		</div>
+
+	</body>
+</html>

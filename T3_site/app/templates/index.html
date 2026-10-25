@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+	<head>
+		<title>Bookshelf</title>
+		
+		<link rel="stylesheet" href="{% static 'style.css' %}">
+	</head>
+	<body>
+		<div class="container">
+			<div class="banner">
+				<h1>Welcome</h1>
+			</div>
+			<p>My data:</p>
+	
+			<ul>
+				{% for Book in books %}
+					<li>
+						<p>{{ Book.title }} by {{ Book.author }}, first published in {{ Book.year }}.</p>
+					</li>
+				{% empty %}
+					<li>Test</li>
+				{% endfor %}
+			</ul>
+			
+			<form action="{% url 'results' %}" method="get">
+				<input name="q" type="text" placeholder="Search database...">
+				<button type="submit">Search</button>
+			</form>
+			
+			<a href="{% url 'add_book' %}">Add to the data</a>
+		</div>
+		
+	
+		<div class="footer">
+			<p>Audra Krebs' tech exercise submission</p>
+		</div>
+
+	</body>
+</html>
